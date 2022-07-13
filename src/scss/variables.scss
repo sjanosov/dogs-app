@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+$Poppins: 'Poppins', sans-serif;
+
+//Colors
+$dark: rgb(29,29,29);
+$light: #fff;
+$primaryColor: rgb(162, 162, 246);
+$bg: rgb(244,244,255);
+$navColor: #caafa8;
+$border: grey;
+
+
+// border radius
+$borderRadius: 12px;
+
+// header height
+$headerHeight: 50px;
+
+//body height without header
+$bodyHeight: calc(100vh - 50px);
+
+@mixin breakpoint($point) {
+    @if $point == md {
+        // 768px
+        @media (min-width: 48em) {
+            @content;
+        }
+    }
+}

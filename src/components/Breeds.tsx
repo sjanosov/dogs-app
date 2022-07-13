@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Caurosel from './Carousel'
 
 function Breeds() {
+
+  
+   
   return (
-    <div>Breeds</div>
+    <main>
+      <div className="carousel-container">
+      <div className="carousel-inner-container">
+      <Caurosel />
+        
+       
+      </div>
+      </div>
+    </main>
+    
   )
 }
 

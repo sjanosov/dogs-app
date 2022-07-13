@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Dogs from './components/Dogs';
@@ -13,13 +12,6 @@ import Layout from './components/Layout';
 function App() {
   return (
     <BrowserRouter>
-    {/* <nav>
-      <Link to="/">Welcome</Link>
-      <Link to="/dogs">Dogs</Link>
-      <Link to="/breeds">Breeds</Link>
-      <Link to="/training">Training</Link>
-      <Link to="/adoption">Adoption</Link>
-    </nav> */}
       <Routes>
           <Route index element={<Home />}/>
           <Route element={<Layout />}>

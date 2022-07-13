@@ -1,0 +1,59 @@
+@import "./variables.scss";
+
+.carousel-container {
+
+    min-height: $bodyHeight;
+    background-image: url('../images/cool-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+    .carousel-inner-container {
+
+        width: 90%;
+        margin: 0 auto;
+
+        .card {
+            height: 500px;
+            margin-top: 100px;
+            display: block;
+            overflow: auto;
+            border: 1px solid #ad9292;
+            background: #b17c55;
+            color: #fff5f5;
+            border-radius: 11px;
+
+            .card-top {
+                height: 300px;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .card-bottom {
+                padding: 20px;
+
+                h1 {
+                    font-size: 21px;
+                    font-weight: bold;
+                    margin-bottom: 14px;
+                }
+            }
+
+        }
+    }
+
+}
+
+/* the slides */
+.slick-slide>div {
+    margin: 0 10px;
+}
+
+/* the parent */
+.slick-list {
+    margin: 0 -10px;
+}

@@ -1,13 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-
+import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom';
+import '../scss/welcome-page.scss';
 
 
 function Home() {
+  const [redirectNow, setRedirectNow] = useState(false);
+  setTimeout(() => {
+    setRedirectNow(true);
+  }, 2000);
   return (
-    <div className="welcome-page">
-       Dog image
-    </div>
+    <>
+      {redirectNow ? <Navigate to="/dogs" /> : 
+      <div className="welcome-page" />}
+    </>
   )
 }
 
