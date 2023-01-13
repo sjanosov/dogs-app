@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import Caurosel from './Carousel'
+import DogBreed from './DogBreed'
+import { motion } from "framer-motion";
 
 function Breeds() {
 
   
    
   return (
-    <main>
-      <div className="carousel-container">
-      <div className="carousel-inner-container">
-      <Caurosel />
-        
-       
-      </div>
-      </div>
-    </main>
-    
+    <motion.div initial={{width: 0 }} animate={{width: "100%"}} exit={{x: window.innerWidth, transition: {duration: 0.5}}} >
+      <main>
+        <div className="main-content">
+          <div className="breeds-container">
+            <div className="breeds-inner-container">
+              <DogBreed />
+            </div>
+          </div>
+        </div>
+      </main>
+    </motion.div>
   )
 }
 

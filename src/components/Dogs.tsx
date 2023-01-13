@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import PanelBody from './PanelBody';
-import '../scss/dogs.scss';
+import '../scss/site.scss';
+import { motion } from "framer-motion";
 
 function Dogs() {
   let navigate = useNavigate();
   return (
+    <motion.div initial={{width: 0 }} animate={{width: "100%"}} exit={{x: window.innerWidth, transition: {duration: 0.5}}} >
     <main>
       <PanelBody title="15 Amazing Dog Facts">
         <p className="sub-title">
@@ -78,6 +80,7 @@ function Dogs() {
 
       </PanelBody>
     </main>
+    </motion.div>
   )
 }
 

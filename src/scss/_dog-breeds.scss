@@ -1,0 +1,79 @@
+@import "./variables.scss";
+
+.main-content {
+    background: $bg;
+}
+.breeds-container {
+
+    .breeds-inner-container {
+
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .card {
+            margin-top: 100px;
+            display: block;
+            overflow: auto;
+            background: $primaryColor;
+            color: #fff5f5;
+            border-radius: 11px;
+            box-shadow: $primaryColor 0px 20px 30px -10px;
+            width: 30%;
+
+            &:hover {
+                cursor: pointer;
+                animation: flip-diagonal 1s ease 0s 1 normal both;
+            }
+
+            .card-top {
+                height: 300px;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: 0% 16%;
+                    opacity: 0.7;
+                }
+            }
+
+            .card-bottom {
+                padding: 20px;
+
+                h1 {
+                    font-size: 18px;
+                    font-weight: normal;
+                    margin-bottom: 14px;
+                }
+            }
+
+        }
+    }
+
+}
+
+@keyframes flip-diagonal {
+			
+    0% {
+        transform:rotate3d(1,1,0,0deg);
+    }
+    100% {
+        transform:rotate3d(1,1,0,360deg);
+    }
+}
+
+.attribute {
+    margin-bottom: 6px;
+    margin-top: 15px;
+}
+
+.breed-detail-header {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 14px;
+}
+

@@ -19,6 +19,10 @@ body {
     width: 100%;
 }
 
+button {
+    font-family: $Poppins;
+}
+
 h2, .h2 {
     margin-bottom: 14px;
     font-weight: 500;
@@ -27,4 +31,5 @@ h2, .h2 {
 html, body
 {
     height: 100%;
+    font-size: 14px;
 }

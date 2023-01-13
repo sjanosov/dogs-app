@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
-import '../scss/navigation.scss';
+import { Link, NavLink } from 'react-router-dom'
+import '../scss/_navigation.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import dogCrying from '../sounds/dogCrying.mp3';
@@ -24,6 +24,7 @@ function Navigation() {
 
 
 const soundPlay = (src:any) => {
+    console.log(src)
     const sound = new Howl({
         src, 
         html5: true, 
@@ -34,24 +35,31 @@ const soundPlay = (src:any) => {
       
 }
 
+let activeStyle = {
+    borderBottom: "2px solid #fff", 
+    paddingBottom: "1px"
+}
+
+let notSelected = {
+    textDecoration: "none",
+}
+
 // function handleSoundPlay() {
 
 //     setIsDisabled(true);
 //     soundPlay()
 // }
-    
+    console.log(isDisabled)
     return (
-        <header>
             <nav className="site-header" >
-                <FontAwesomeIcon icon={faPaw} className="paw-icon"  onClick={() => isDisabled ? null : soundPlay(dogSounds[Math.floor(Math.random() * (dogSounds.length + 1))])}/>
+                <FontAwesomeIcon icon={faPaw} className="paw-icon"  onClick={() => isDisabled ? null : soundPlay(dogSounds[Math.floor(Math.random() * (dogSounds.length))])}/>
                 <ul className="navigation">
-                    <li className="nav-item"><Link to="dogs">Dogs</Link></li>
-                    <li className="nav-item"><Link to="breeds">Breeds</Link></li>
-                    <li className="nav-item"><Link to="adoption">Adopt me</Link></li>
-                    <li className="nav-item"><Link to="training">Trainig</Link></li>
+                    <li className="nav-item"><NavLink to="dogs" >Dogs</NavLink></li>
+                    <li className="nav-item"><NavLink to="breeds" >Breeds</NavLink></li>
+                    <li className="nav-item"><NavLink to="adoption">Adopt me</NavLink></li>
+                    <li className="nav-item"><NavLink to="training">Trainig</NavLink></li>
                 </ul>
             </nav>
-        </header>
 
     )
 }

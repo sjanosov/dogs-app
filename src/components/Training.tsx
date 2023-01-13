@@ -1,8 +1,11 @@
 import React from 'react'
+import { motion } from "framer-motion";
 
 function Training() {
   return (
-    <div>Training</div>
+    <motion.div>
+      Training
+    </motion.div>
   )
 }
 

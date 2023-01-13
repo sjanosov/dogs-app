@@ -1,0 +1,67 @@
+//lightbox
+.breed-lightbox {
+    visibility: hidden;
+    transform: scale(0,0);
+    transition: transform 500ms;
+
+    ~ .overlay {
+        position: fixed;
+        display: block;
+        visibility: hidden;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.541);
+        display: flex;
+        align-items: center;
+    }
+}
+.breed-lightbox.opened {
+    position: fixed;
+    visibility: visible;
+    width: 600px;
+    height: auto;
+    transform: scale(1,1);
+    background: #e7e7e6;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 250px;
+    border-radius: 5px;
+
+    ~ .overlay {
+        position: fixed;
+        display: block;
+        visibility: visible;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.541);
+        display: flex;
+        align-items: center;
+    }
+    .lightbox-inner {
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+            align-self: flex-end;
+            font-size: 29px;
+            color :#26394d;
+
+            &:hover {
+                cursor: pointer;
+                color: #61778f;
+            }
+        }
+
+    }
+}
+

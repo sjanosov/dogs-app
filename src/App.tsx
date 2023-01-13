@@ -1,28 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Home from './components/Home';
-import Dogs from './components/Dogs';
-import Breeds from './components/Breeds';
-import Training from './components/Training';
-import ErrorPage from './components/ErrorPage';
-import Adoption from './components/Adoption';
-import Layout from './components/Layout';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import AnimatedRoutes from './components/AnimatedRoutes';
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-          <Route index element={<Home />}/>
-          <Route element={<Layout />}>
-            <Route path="/dogs" element={<Dogs />} />
-            <Route path="/breeds" element={<Breeds />} />
-            <Route path="/training" element={<Training />} />
-            <Route path="/adoption/:dogname" element={<Adoption />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-      </Routes>
-    </BrowserRouter>
+    <Router>
+        <AnimatedRoutes />
+    </Router>
   );
 }
 

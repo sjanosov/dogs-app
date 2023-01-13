@@ -3,13 +3,13 @@
 .site-header {
     background: $navColor;
     color: $light;
-    height: $headerHeight;
     position: relative;
+    padding: 20px;
 
     .paw-icon {
         position: absolute;
         left: 38px;
-        top: 9px;
+        top: 26px;
         font-size: 32px;
 
         &:hover {
@@ -43,8 +43,16 @@
 
                 &:hover::before {
                     width: 100%;
-                    
                 }
+            }
+
+            a.active {
+                border-bottom: 2px solid #fff;
+                padding-bottom: 1px;
+            }
+
+            a.active:hover:before {
+                display: none;
             }
         }
     }
