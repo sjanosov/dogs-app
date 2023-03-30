@@ -1,7 +1,3 @@
-import React from 'react'
-import '../scss/_layout.scss';
-
-
 type PanelBodyProps = {
     title: string,
     children?: JSX.Element | JSX.Element[];

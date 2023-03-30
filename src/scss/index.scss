@@ -1,0 +1,48 @@
+
+@import '_variables.scss';
+@import "_dog-breeds.scss";
+@import "_dogs.scss";
+@import "_layout.scss";
+@import "_lightbox.scss";
+@import "_misc.scss";
+@import "_navigation.scss";
+@import "_spinner.scss";
+@import "_variables.scss";
+@import "_welcome-page.scss";
+@import "_form.scss";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+a {
+    color: $light;
+    text-decoration: none;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+
+body {
+    font-family: $Poppins;
+    width: 100%;
+    background: $bg;
+    color: $light;
+    height: 100%;
+    font-size: 14px;
+}
+
+button {
+    font-family: $Poppins;
+}
+
+h2, .h2 {
+    margin-bottom: 14px;
+    font-weight: 500;
+}
+
+
+

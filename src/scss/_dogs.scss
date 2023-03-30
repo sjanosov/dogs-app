@@ -1,3 +1,48 @@
-.fact-article {
-    margin-bottom: 44px;
+.facts-container {
+    display: flex;
+    flex-direction: column;
+
+    .fact-article {
+        margin-bottom: 44px;
+        width: 60%;
+        background: $primaryColor;
+        padding: 20px 34px;
+        border-radius: 11px;
+        font-size: 16px;
+        text-align: justify;
+        line-height: 29px;
+        transform: translateX(100px);
+        opacity: 0;
+        transition: 150ms;
+
+        h2 {
+            display: flex;
+
+            .accent {
+                font-weight: bold;
+                font-size: 47px;
+                padding-right: 20px;
+            }
+        }
+        
+        
+
+        &.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+   
+
+   
+
+    h2 {
+        text-align: start;
+    }
+
+    .fact-article:nth-child(even) {
+        margin-left: auto;
+    }
 }
+

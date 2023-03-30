@@ -21,12 +21,11 @@ function Home() {
 
   
   return (
-    <motion.div initial={{width: 0 }} animate={{width: "100%"}} exit={{x: window.innerWidth, transition: {duration: 0.5}}} >
+    <>
       {/* {redirectNow ? <Navigate to="/dogs" /> :  */}
       <main>
         <div className="welcome-page">
           <Navigation />
-        
         </div>
       </main>
       <div className="intro">
@@ -44,7 +43,7 @@ function Home() {
       </div>
       <div className="slider"></div>
       {/* } */}
-    </motion.div>
+    </>
   )
 }
 

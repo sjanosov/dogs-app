@@ -1,16 +1,23 @@
 @import './variables.scss';
+.site-header-container {
+    box-shadow: $primaryColor 0px 9px 46px 46px;
+    position: relative;
+    background: $primaryColor;
+    margin-bottom: 150px;
+}
 
 .site-header {
-    background: $navColor;
-    color: $light;
     position: relative;
-    padding: 20px;
+    font-size: 18px;
+    padding-top: 30px;
+}
 
     .paw-icon {
-        position: absolute;
-        left: 38px;
-        top: 26px;
-        font-size: 32px;
+        position: absolute;    
+        left: 67px;
+        top: 19px;
+        font-size: 55px;
+        transform: rotateZ(-27deg);
 
         &:hover {
             cursor: pointer;
@@ -47,7 +54,7 @@
             }
 
             a.active {
-                border-bottom: 2px solid #fff;
+                border-bottom: 3px solid $light;
                 padding-bottom: 1px;
             }
 
@@ -56,4 +63,3 @@
             }
         }
     }
-}
