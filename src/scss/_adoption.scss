@@ -1,0 +1,31 @@
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+    color: $light !important;
+}
+
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    color: $primaryColor !important;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    background: $primaryColor !important;
+    color: $light !important;
+    font-family: $Poppins !important;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+    background: $primaryHoverColor !important;
+}
+
+form {
+    padding: 20px 20px;
+    background: #3a3329;
+    border-radius: 4px;
+}
+
+.error {
+    color: $error;
+}
+
+.breed-select {
+    width: 200px;
+}
