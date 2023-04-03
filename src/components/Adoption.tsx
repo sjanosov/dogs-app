@@ -1,39 +1,42 @@
-import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Radio, Select, TextField } from '@mui/material';
+import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Radio, Select, TextField, } from '@mui/material';
 import Button from '@mui/material/Button';
-import { Field, FieldAttributes, Form, Formik, useField } from 'formik';
+import { Field, FieldAttributes, Form, Formik, useField, useFormik } from 'formik';
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PanelBody from './PanelBody'
 import * as Yup from 'yup';
 import { dogsForAdoption } from '../constants/dogsForAdoption';
+import { breeds } from '../constants/breeds';
+import SearchedDogs from './SearchedDogs';
 
 type MyRadioProps = { label: string } & FieldAttributes<{}>;
 
 function Adoption() {
 
-  const [breed, setBreed] = useState("");
+  const [selectedBreed, setSelectedBreed] = useState<string | null>("");
 
 
-  const handleChange = (value: any) => {
-    // Here is the value is a selected option label or the new typed value
-    setBreed(value);
-  }
-  // const [field, meta] = useField<{}>();
+
   // const MyRadio: React.FC<MyRadioProps> = ({label, ...props}) => {
   //   const [field] = useField<{}>(props);
   //   return (
 
   //   )
   // } 
-
   const SignupSchema = Yup.object().shape({
     gender: Yup.string()
       .required("Select gender"),
+    age: Yup.string()
+      .required("Select age"),
+    breed: Yup.string()
+      .required("Select breed"),
 
   });
+  
 
   return (
     <main className="main-content">
+      
       <PanelBody title="Pawfect Companions">
         <h2>Find Your Furry Friend at Our Dog Adoption Page</h2>
         <p className="sub-title">
@@ -43,7 +46,7 @@ function Adoption() {
           initialValues={{
             gender: '',
             age: '',
-            breed: 'Select breed'
+            breed: ''
           }}
           onSubmit={async (values) => {
             await new Promise((r) => setTimeout(r, 500));
@@ -51,10 +54,10 @@ function Adoption() {
           }}
           validationSchema={SignupSchema}
         >
-          {({ errors, touched, values, isSubmitting }) => (
+          {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
             <Form>
               <div className="row">
-                <div className="col-3">
+                <div className="col-4">
                   <div id="gender-rg">Gender</div>
                   <div role="group" aria-labelledby="gender-rg">
                     <label>
@@ -65,11 +68,11 @@ function Adoption() {
                       <Field type="radio" name="gender" value="Male" as={Radio} />
                       Male
                     </label>
-                    {errors.gender && touched.gender ? <div className="error">{errors.gender}</div> : null}
+                    {errors.gender  && touched.gender ? <div className="error">{errors.gender}</div> : null}
                     <div>Picked: {values.gender}</div>
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-4">
                   <div id="age-rg">Age</div>
                   <div role="group" aria-labelledby="age-rg">
                     <label>
@@ -84,18 +87,21 @@ function Adoption() {
                       <Field type="radio" name="age" value="Old" as={Radio} />
                       7 year and older
                     </label>
+                    {errors.age && touched.age ? <div className="error">{errors.age}</div> : null}
+
                     <div>Picked: {values.age}</div>
                   </div>
                 </div>
-                <div className="col-3 text-right">
+                <div className="col-3">
                   <Autocomplete
                     id="breed"
-                    options={dogsForAdoption}
-                    getOptionLabel={option => option.breed}
+                    options={breeds}
+                    getOptionLabel={option => option}
                     fullWidth
-                    onChange={(e, value) => {
-                      console.log(value);
-                      handleChange(value);
+                    value={selectedBreed}
+                    onChange={(e, newValue) => {
+                      setSelectedBreed(newValue);
+                      setFieldValue("breed", newValue)
                     }}
                     renderInput={params => (
                       <TextField
@@ -107,18 +113,27 @@ function Adoption() {
                       />
                     )}
                   />
+                  
+                  {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
+
                 </div>
               </div>
 
 
 
+              <div className="row">
+                <div className="col-12 text-right">
+                  <Button type="submit" disabled={isSubmitting}>Sniff it</Button>
+                </div>
+              </div>
 
 
-              <Button type="submit" disabled={isSubmitting}>Submit</Button>
             </Form>
           )}
         </Formik>
+       
 
+                      <SearchedDogs />
 
 
       </PanelBody>

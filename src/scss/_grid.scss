@@ -1,13 +1,21 @@
 .row {
     display: flex;
+    margin: 0 -10px;
 }
 
 .col-3 {
-    width: 40%;
+    width: 30%;
+    padding: 0 10px;
 }
 
 .col-4 {
-    width: 30%;
+    width: 40%;
+    padding: 0 10px;
+}
+
+.col-12 {
+    width: 100%;
+    padding: 0 10px;
 }
 
 .text-right {
