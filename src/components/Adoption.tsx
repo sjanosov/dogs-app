@@ -8,21 +8,16 @@ import * as Yup from 'yup';
 import { dogsForAdoption } from '../constants/dogsForAdoption';
 import { breeds } from '../constants/breeds';
 import SearchedDogs from './SearchedDogs';
+import { FilteredDogsType } from '../constants/filteredDogs';
 
-type MyRadioProps = { label: string } & FieldAttributes<{}>;
 
 function Adoption() {
 
   const [selectedBreed, setSelectedBreed] = useState<string | null>("");
+  const [selectedAge, setSelectedAge] = useState<number | null>(0);
+  const [selectedGender, setSelectedGender] = useState<string | null>("");
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
-
-
-  // const MyRadio: React.FC<MyRadioProps> = ({label, ...props}) => {
-  //   const [field] = useField<{}>(props);
-  //   return (
-
-  //   )
-  // } 
   const SignupSchema = Yup.object().shape({
     gender: Yup.string()
       .required("Select gender"),
@@ -32,8 +27,22 @@ function Adoption() {
       .required("Select breed"),
 
   });
-  
 
+  // function getFilteredDogs(val: FilteredDogsType) {
+  //   return (
+  //     <div>{val.age}</div>
+  //   )
+  // }
+
+  const handleSubmit = (values: FilteredDogsType) => {
+    // Do something with the form values
+    console.log(values);
+   
+  
+    // // Call setSubmitting to indicate that the form submission is complete
+    // setSubmitting(false);
+  };
+  
   return (
     <main className="main-content">
       
@@ -48,13 +57,16 @@ function Adoption() {
             age: '',
             breed: ''
           }}
-          onSubmit={async (values) => {
-            await new Promise((r) => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
-          }}
+          // onSubmit={async (values: FilteredDogsType) => {
+          //   await new Promise((r) => setTimeout(r, 500));
+          //   alert(JSON.stringify(values, null, 2));
+          // }}
+          onSubmit={handleSubmit}
           validationSchema={SignupSchema}
         >
+          
           {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
+            
             <Form>
               <div className="row">
                 <div className="col-4">
@@ -127,12 +139,13 @@ function Adoption() {
                 </div>
               </div>
 
-
+              {values.age}
             </Form>
+            
           )}
         </Formik>
+        
        
-
                       <SearchedDogs />
 
 
