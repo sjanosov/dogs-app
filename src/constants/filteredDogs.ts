@@ -1,5 +1,6 @@
 export type FilteredDogsType = {
     gender: string;
-    age: string;
+    age: number;
+    ageInString: string;
     breed: string;
 }

@@ -7,16 +7,21 @@ import PanelBody from './PanelBody'
 import * as Yup from 'yup';
 import { dogsForAdoption } from '../constants/dogsForAdoption';
 import { breeds } from '../constants/breeds';
-import SearchedDogs from './SearchedDogs';
 import { FilteredDogsType } from '../constants/filteredDogs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShieldDog } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Adoption() {
 
   const [selectedBreed, setSelectedBreed] = useState<string | null>("");
   const [selectedAge, setSelectedAge] = useState<number | null>(0);
+  const [selectedAgeInString, setSelectedAgeInString] = useState<string | null>("");
   const [selectedGender, setSelectedGender] = useState<string | null>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [autoSelectValue, setAutoSelectValue] = useState<string | null>("");
 
   const SignupSchema = Yup.object().shape({
     gender: Yup.string()
@@ -26,26 +31,60 @@ function Adoption() {
     breed: Yup.string()
       .required("Select breed"),
 
-  });
+  })
 
-  // function getFilteredDogs(val: FilteredDogsType) {
-  //   return (
-  //     <div>{val.age}</div>
-  //   )
-  // }
+  function getFilteredBreed() {
+    return dogsForAdoption.filter(dog => (dog.breed == selectedBreed && dog.gender == selectedGender && dog.ageinString == selectedAgeInString)).map(dog => (
+      <div className="dog-card" key={dog.id}>
+        <div className="dog-portrait">
+          <img src={require(`../images/${dog.imageUrl}.jpg`)} />
+        </div>
+        <div className="dog-info">
+          <div className="dog-header">
+            <div className="dog-name-age">
+              <div className="left-side">
+                <FontAwesomeIcon icon={faShieldDog} className="fa-shield-icon" />
+                <h3 className="dog-name">{dog.name}</h3>
+                <span className="dog-age"> , {dog.age} {dog.age == 1 ? "year" : "years"}</span>
+              </div>
+              <div className="right-side">
+                {dog.gender}
+              </div>
+            </div>
+            <div className="dog-breed">
+              {dog.breed}
+            </div>
+          </div>
+          <div className="dog-content">
+            <div className="about">
+              <span>About</span> {dog.name}
+            </div>
+            <div className="about-text">
+              {dog.empathy} {dog.behavior}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    ))
+  }
+  const noDog = () => toast.error("No such a dog for adoption. 🐶")
+
 
   const handleSubmit = (values: FilteredDogsType) => {
-    // Do something with the form values
-    console.log(values);
-   
-  
-    // // Call setSubmitting to indicate that the form submission is complete
-    // setSubmitting(false);
+    setSelectedAge(values.age);
+    setSelectedAgeInString(values.ageInString);
+    setSelectedGender(values.gender);
+    setSelectedBreed(values.breed);
+    setAutoSelectValue(values.breed);
+    console.log(getFilteredBreed().length)
+    getFilteredBreed().length == 0 && noDog();
   };
-  
+
+
   return (
     <main className="main-content">
-      
+
       <PanelBody title="Pawfect Companions">
         <h2>Find Your Furry Friend at Our Dog Adoption Page</h2>
         <p className="sub-title">
@@ -54,19 +93,17 @@ function Adoption() {
         <Formik
           initialValues={{
             gender: '',
-            age: '',
+            age: 0,
+            ageInString: '',
             breed: ''
           }}
-          // onSubmit={async (values: FilteredDogsType) => {
-          //   await new Promise((r) => setTimeout(r, 500));
-          //   alert(JSON.stringify(values, null, 2));
-          // }}
           onSubmit={handleSubmit}
           validationSchema={SignupSchema}
+          validateOnChange={true}
         >
-          
+
           {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
-            
+
             <Form>
               <div className="row">
                 <div className="col-4">
@@ -80,7 +117,7 @@ function Adoption() {
                       <Field type="radio" name="gender" value="Male" as={Radio} />
                       Male
                     </label>
-                    {errors.gender  && touched.gender ? <div className="error">{errors.gender}</div> : null}
+                    {errors.gender && touched.gender ? <div className="error">{errors.gender}</div> : null}
                     <div>Picked: {values.gender}</div>
                   </div>
                 </div>
@@ -88,32 +125,33 @@ function Adoption() {
                   <div id="age-rg">Age</div>
                   <div role="group" aria-labelledby="age-rg">
                     <label>
-                      <Field type="radio" name="age" value="Puppy" as={Radio} />
+                      <Field type="radio" name="ageInString" value="Puppy" as={Radio} />
                       0 - 1 year
                     </label>
                     <label>
-                      <Field type="radio" name="age" value="Young" as={Radio} helper error={true} />
+                      <Field type="radio" name="ageInString" value="Young" as={Radio} helper error={true} />
                       2 - 6 year
                     </label>
                     <label>
-                      <Field type="radio" name="age" value="Old" as={Radio} />
+                      <Field type="radio" name="ageInString" value="Old" as={Radio} />
                       7 year and older
                     </label>
-                    {errors.age && touched.age ? <div className="error">{errors.age}</div> : null}
+                    {errors.ageInString && touched.ageInString ? <div className="error">{errors.ageInString}</div> : null}
 
-                    <div>Picked: {values.age}</div>
+                    <div>Picked: {values.ageInString}</div>
                   </div>
                 </div>
                 <div className="col-3">
                   <Autocomplete
                     id="breed"
                     options={breeds}
-                    getOptionLabel={option => option}
+
                     fullWidth
-                    value={selectedBreed}
-                    onChange={(e, newValue) => {
-                      setSelectedBreed(newValue);
-                      setFieldValue("breed", newValue)
+                    value={autoSelectValue}
+                    onChange={(e, newVal) => {
+                      setAutoSelectValue(newVal)
+                      setFieldValue("breed", newVal)
+
                     }}
                     renderInput={params => (
                       <TextField
@@ -125,28 +163,27 @@ function Adoption() {
                       />
                     )}
                   />
-                  
+                  picked: {values.breed}
                   {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
-
                 </div>
               </div>
-
-
-
               <div className="row">
                 <div className="col-12 text-right">
-                  <Button type="submit" disabled={isSubmitting}>Sniff it</Button>
+                  <Button type="submit" >Sniff it</Button>
                 </div>
               </div>
-
-              {values.age}
             </Form>
-            
+
           )}
         </Formik>
-        
-       
-                      <SearchedDogs />
+
+        <>{getFilteredBreed()}</>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          style={{bottom: "-7.5em"}}
+           />
+        {/* <SearchedDogs /> */}
 
 
       </PanelBody>
