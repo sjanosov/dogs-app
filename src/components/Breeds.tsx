@@ -87,10 +87,9 @@ function Breeds() {
   return (
     //<motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ x: window.innerWidth, transition: { duration: 0.5 } }} >
     <main>
-
+      {loading ? <Spinner /> : <>
       <div className="main-content">
         <div className="breeds-container">
-          {loading ? <Spinner /> : <>
             <Search getQuery={queryFunction} />
 
             <div className="breeds-inner-container">
@@ -134,9 +133,8 @@ function Breeds() {
               </div>
               <div className="overlay" />
             </div>
-          </>}
         </div>
-      </div>
+      </div></>}
     </main>
     //</motion.div>
   )

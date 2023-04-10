@@ -1,11 +1,5 @@
 @import "./_variables.scss";
 
-.main-content {
-    background: $bg;
-    
-  }
-  
- 
 
 .breeds-container {
 
@@ -13,14 +7,16 @@
     animation: slide-top 0.4s linear 0s 1 normal both;
 
     @keyframes slide-top {
-        
+
         0% {
-            transform:translateY(0);
+            transform: translateY(0);
         }
+
         100% {
-            transform:translateY(-50px);
+            transform: translateY(-50px);
         }
     }
+
     .breeds-inner-container {
 
         width: 100%;
@@ -31,7 +27,7 @@
         justify-content: center;
         gap: 24px;
         height: auto;
-        
+
 
         .card {
             display: block;
@@ -105,38 +101,39 @@
 }
 
 @keyframes myAnim {
-	0% {
-		animation-timing-function: ease-out;
-		transform: scale(0);
-		transform-origin: center center;
-	}
+    0% {
+        animation-timing-function: ease-out;
+        transform: scale(0);
+        transform-origin: center center;
+    }
 
-	10% {
-		animation-timing-function: ease-in;
-		transform: scale(0.91);
-	}
+    10% {
+        animation-timing-function: ease-in;
+        transform: scale(0.91);
+    }
 
-	17% {
-		animation-timing-function: ease-out;
-		transform: scale(0.98);
-	}
+    17% {
+        animation-timing-function: ease-out;
+        transform: scale(0.98);
+    }
 
-	33% {
-		animation-timing-function: ease-in;
-		transform: scale(0.87);
-	}
+    33% {
+        animation-timing-function: ease-in;
+        transform: scale(0.87);
+    }
 
-	45% {
-		animation-timing-function: ease-out;
-		transform: scale(1);
-	}
+    45% {
+        animation-timing-function: ease-out;
+        transform: scale(1);
+    }
 }
 
 @keyframes shadow-drop-center {
-			
+
     0% {
         box-shadow: transparent 0px 0px 0px 0px;
     }
+
     100% {
         box-shadow: $primaryColor 0px 1px 18px 8px;
     }
@@ -159,6 +156,7 @@
     .breeds-container .breeds-inner-container {
         width: 100%;
     }
+
     .breeds-container .breeds-inner-container .card {
         width: 45%;
     }
@@ -175,4 +173,3 @@
         width: 95%;
     }
 }
-

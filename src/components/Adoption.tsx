@@ -86,7 +86,6 @@ function Adoption() {
     <main className="main-content">
 
       <PanelBody title="Pawfect Companions">
-        <h2>Find Your Furry Friend at Our Dog Adoption Page</h2>
         <p className="sub-title">
           Adopting a dog not only provides a loyal friend but also saves a life. It's often more affordable than buying from a breeder and has health benefits like lowering stress levels and improving mood. Consider adopting a furry pal today.
         </p>

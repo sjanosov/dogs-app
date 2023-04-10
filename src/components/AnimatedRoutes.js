@@ -13,12 +13,12 @@ function AnimatedRoutes() {
     const location = useLocation();
 
 
-   
-  return (
+
+    return (
         <AnimatePresence>
-           <Routes location={location} key={location.pathname}>
-                <Route index element={<Home />}/>
+            <Routes location={location} key={location.pathname}>
                 <Route element={<Layout />}>
+                    <Route path="/home" element={<Home />} />
                     <Route path="/dogs" element={<Dogs />} />
                     <Route path="/breeds" element={<Breeds />} />
                     <Route path="/training" element={<Training />} />
@@ -27,7 +27,7 @@ function AnimatedRoutes() {
                 </Route>
             </Routes>
         </AnimatePresence>
-  )
+    )
 }
 
 export default AnimatedRoutes

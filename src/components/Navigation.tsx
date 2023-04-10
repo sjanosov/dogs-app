@@ -37,7 +37,7 @@ function Navigation() {
 
     let navigate = useNavigate(); 
     function routeChange() {
-        let path = `/dogs`; 
+        let path = `/home`; 
         navigate(path);
         return Promise.resolve(); 
       }
