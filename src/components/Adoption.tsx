@@ -1,7 +1,7 @@
 import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Radio, Select, TextField, } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Field, FieldAttributes, Form, Formik, useField, useFormik } from 'formik';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PanelBody from './PanelBody'
 import { dogsForAdoption } from '../constants/dogsForAdoption';
@@ -22,59 +22,81 @@ function Adoption() {
   const [selectedGender, setSelectedGender] = useState<string | null>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [autoSelectValue, setAutoSelectValue] = useState<string | null>("");
+  
+
   const noDog = () => {
     toast.error("No such a dog for adoption. 🐶");
   };
 
+  function getFilteredBreed() {
+   
+    const selectedDog = () => {
+      return dogsForAdoption.filter(dog => (dog.breed == selectedBreed && dog.gender == selectedGender && dog.ageinString == selectedAgeInString))
+    }
+    console.log("selected dog lenght" + selectedDog.length)
+    if (selectedDog) {
+      return selectedDog().map(dog => (
+        <div className="dog-card" key={dog.id}>
+          <div className="dog-portrait">
+            <img src={require(`../images/${dog.imageUrl}.jpg`)} />
+          </div>
+          <div className="dog-info">
+            <div className="dog-header">
+              <div className="dog-name-age">
+                <div className="left-side">
+                  <FontAwesomeIcon icon={faShieldDog} className="fa-shield-icon" />
+                  <h3 className="dog-name">{dog.name}</h3>
+                  <span className="dog-age"> , {dog.age} {dog.age == 1 ? "year" : "years"}</span>
+                </div>
+                <div className="right-side">
+                  {dog.gender}
+                </div>
+              </div>
+              <div className="dog-breed">
+                {dog.breed}
+              </div>
+            </div>
+            <div className="dog-content">
+              <div className="about">
+                <span>About</span> {dog.name}
+              </div>
+              <div className="about-text">
+                {dog.empathy} {dog.behavior}
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      ))
+    }
+    else return noDog();
+  }
+  
+
   const handleSubmit = (values: FilteredDogsType) => {
     console.log("handleSubmitcalled")
     setSelectedAge(values.age);
+   
     setSelectedAgeInString(values.ageInString);
     setSelectedGender(values.gender);
+    console.log(selectedGender)
     setSelectedBreed(values.breed);
     setAutoSelectValue(values.breed);
-    console.log(getFilteredBreed().length)
-    getFilteredBreed().length == 0 && noDog() 
-    
+   
+  };
 
-      };
-  function getFilteredBreed() {
-    return dogsForAdoption.filter(dog => (dog.breed == selectedBreed && dog.gender == selectedGender && dog.ageinString == selectedAgeInString)).map(dog => (
-      <div className="dog-card" key={dog.id}>
-        <div className="dog-portrait">
-          <img src={require(`../images/${dog.imageUrl}.jpg`)} />
-        </div>
-        <div className="dog-info">
-          <div className="dog-header">
-            <div className="dog-name-age">
-              <div className="left-side">
-                <FontAwesomeIcon icon={faShieldDog} className="fa-shield-icon" />
-                <h3 className="dog-name">{dog.name}</h3>
-                <span className="dog-age"> , {dog.age} {dog.age == 1 ? "year" : "years"}</span>
-              </div>
-              <div className="right-side">
-                {dog.gender}
-              </div>
-            </div>
-            <div className="dog-breed">
-              {dog.breed}
-            </div>
-          </div>
-          <div className="dog-content">
-            <div className="about">
-              <span>About</span> {dog.name}
-            </div>
-            <div className="about-text">
-              {dog.empathy} {dog.behavior}
-            </div>
-          </div>
+  // const initialRender = useRef(true);
+  //   useEffect(() => {
+  //   console.log("useefect called")
+  //   if(initialRender.current){
+  //     initialRender.current=false;
+  //   } else{
+  //     noDog() 
+  //   }
+  // }, []);
 
-        </div>
-      </div>
-    ))
-  }
 
-console.log(submitting)
+
   
 
 
@@ -87,7 +109,8 @@ console.log(submitting)
         </p>
         {/* <AdoptionFilter selectedBreed={selectedBreed} setSelectedBreed={setSelectedBreed} selectedAge={selectedAge} setSelectedAge={setSelectedAge} selectedAgeInString={selectedAgeInString} setSelectedAgeInString={setSelectedAgeInString} selectedGender={selectedGender} setSelectedGender={setSelectedGender} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue}/> */}
         <AdoptionFilter  handleSubmit={handleSubmit} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue} submitting={submitting}/>
-        <>{getFilteredBreed()}</>
+        <>{ getFilteredBreed()
+    }</>
         <ToastContainer
           position="bottom-center"
           autoClose={3000}
