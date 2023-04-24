@@ -1,11 +1,12 @@
 @import '_variables.scss';
 
 .welcome-page {
-    height: 100vh;
     background: url("../images/blackdog.jpg") no-repeat bottom right fixed;
     background-color: black;
     background-size: contain;
     color: white;
+    height: 100vh;
+    padding-top: 242px;
 }
 
 .wp-content {
@@ -24,6 +25,14 @@
 
 h2 {
   padding-top: 20px;
+}
+
+//media queries
+@media only screen and (max-width: 760px) {
+  .wp-content {
+      width: 100%;
+      padding: 60px 20px 20px;
+  }
 }
 
 

@@ -28,13 +28,15 @@ function Adoption() {
     toast.error("No such a dog for adoption. 🐶");
   };
 
+
+
   function getFilteredBreed() {
    
     const selectedDog = () => {
+
       return dogsForAdoption.filter(dog => (dog.breed == selectedBreed && dog.gender == selectedGender && dog.ageinString == selectedAgeInString))
     }
-    console.log("selected dog lenght" + selectedDog.length)
-    if (selectedDog) {
+    if(selectedDog().length) {
       return selectedDog().map(dog => (
         <div className="dog-card" key={dog.id}>
           <div className="dog-portrait">
@@ -68,10 +70,9 @@ function Adoption() {
           </div>
         </div>
       ))
-    }
-    else return noDog();
   }
-  
+     else return <p>No dog</p>
+  }
 
   const handleSubmit = (values: FilteredDogsType) => {
     console.log("handleSubmitcalled")
@@ -82,18 +83,21 @@ function Adoption() {
     console.log(selectedGender)
     setSelectedBreed(values.breed);
     setAutoSelectValue(values.breed);
+    
+    
    
   };
-
+console.log(submitting)
   // const initialRender = useRef(true);
   //   useEffect(() => {
   //   console.log("useefect called")
   //   if(initialRender.current){
   //     initialRender.current=false;
   //   } else{
-  //     noDog() 
+  //     getFilteredBreed()
   //   }
-  // }, []);
+  // }, [submitting]);
+
 
 
 
@@ -109,7 +113,8 @@ function Adoption() {
         </p>
         {/* <AdoptionFilter selectedBreed={selectedBreed} setSelectedBreed={setSelectedBreed} selectedAge={selectedAge} setSelectedAge={setSelectedAge} selectedAgeInString={selectedAgeInString} setSelectedAgeInString={setSelectedAgeInString} selectedGender={selectedGender} setSelectedGender={setSelectedGender} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue}/> */}
         <AdoptionFilter  handleSubmit={handleSubmit} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue} submitting={submitting}/>
-        <>{ getFilteredBreed()
+        <>{ 
+    getFilteredBreed()
     }</>
         <ToastContainer
           position="bottom-center"
