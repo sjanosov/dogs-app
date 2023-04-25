@@ -20,13 +20,4 @@ $borderRadius: 12px;
 $headerHeight: 50px;
 
 //body height without header
-$bodyHeight: calc(100vh - 50px);
-
-@mixin breakpoint($point) {
-    @if $point == md {
-        // 768px
-        @media (min-width: 48em) {
-            @content;
-        }
-    }
-}
+$bodyHeight: calc(100vh - 300px);

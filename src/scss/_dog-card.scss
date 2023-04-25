@@ -6,7 +6,7 @@
 
     .dog-portrait {
         width: 370px;
-        height: 515px;
+        height: 523px;
         flex: 0 1 auto;
 
         img {
@@ -22,6 +22,7 @@
         flex: 1 1 0;
         display: flex;
         flex-direction: column;
+        text-align: justify;
     }
 
     .fa-shield-icon {
@@ -33,6 +34,7 @@
 
     .dog-header {
         flex: 1;
+        margin-bottom: 48px;
     }
 
     .dog-name-age {
@@ -75,4 +77,27 @@
         line-height: 28px;
     }
     
+}
+
+//media queries
+@media only screen and (max-width: 940px) {
+    .dog-card .dog-info {
+    padding: 25px 20px;
+   }
+}
+
+@media only screen and (max-width: 810px) {
+    .dog-card {
+    flex-direction: column;
+   }
+
+   .dog-card .dog-portrait {
+    width: 100%;
+   }
+
+   .dog-card .dog-portrait img {
+    object-fit: cover;
+    object-position: 0px 0px;
+
+   }
 }

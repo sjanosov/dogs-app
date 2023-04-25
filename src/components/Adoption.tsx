@@ -22,7 +22,11 @@ function Adoption() {
   const [selectedGender, setSelectedGender] = useState<string | null>("");
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [autoSelectValue, setAutoSelectValue] = useState<string | null>("");
-  
+  const [showFilteredBreed, setShowFilteredBreed] = useState(false);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+
+
 
   const noDog = () => {
     toast.error("No such a dog for adoption. 🐶");
@@ -31,12 +35,13 @@ function Adoption() {
 
 
   function getFilteredBreed() {
-   
-    const selectedDog = () => {
 
+    const selectedDog = () => {
       return dogsForAdoption.filter(dog => (dog.breed == selectedBreed && dog.gender == selectedGender && dog.ageinString == selectedAgeInString))
     }
-    if(selectedDog().length) {
+    console.log(selectedDog().length)
+
+    if (selectedDog().length) {
       return selectedDog().map(dog => (
         <div className="dog-card" key={dog.id}>
           <div className="dog-portrait">
@@ -66,42 +71,25 @@ function Adoption() {
                 {dog.empathy} {dog.behavior}
               </div>
             </div>
-  
+
           </div>
         </div>
       ))
-  }
-     else return <p>No dog</p>
+    }
+    else return noDog();
   }
 
   const handleSubmit = (values: FilteredDogsType) => {
     console.log("handleSubmitcalled")
     setSelectedAge(values.age);
-   
+
     setSelectedAgeInString(values.ageInString);
     setSelectedGender(values.gender);
     console.log(selectedGender)
     setSelectedBreed(values.breed);
     setAutoSelectValue(values.breed);
-    
-    
-   
+    setShowFilteredBreed(true);
   };
-console.log(submitting)
-  // const initialRender = useRef(true);
-  //   useEffect(() => {
-  //   console.log("useefect called")
-  //   if(initialRender.current){
-  //     initialRender.current=false;
-  //   } else{
-  //     getFilteredBreed()
-  //   }
-  // }, [submitting]);
-
-
-
-
-  
 
 
   return (
@@ -111,16 +99,15 @@ console.log(submitting)
         <p className="sub-title">
           Adopting a dog not only provides a loyal friend but also saves a life. It's often more affordable than buying from a breeder and has health benefits like lowering stress levels and improving mood. Consider adopting a furry pal today.
         </p>
-        {/* <AdoptionFilter selectedBreed={selectedBreed} setSelectedBreed={setSelectedBreed} selectedAge={selectedAge} setSelectedAge={setSelectedAge} selectedAgeInString={selectedAgeInString} setSelectedAgeInString={setSelectedAgeInString} selectedGender={selectedGender} setSelectedGender={setSelectedGender} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue}/> */}
-        <AdoptionFilter  handleSubmit={handleSubmit} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue} submitting={submitting}/>
-        <>{ 
-    getFilteredBreed()
-    }</>
+        <AdoptionFilter handleSubmit={handleSubmit} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue} submitting={submitting} />
+        <>{
+          showFilteredBreed && getFilteredBreed()
+        }</>
         <ToastContainer
           position="bottom-center"
           autoClose={3000}
-          style={{bottom: "-7.5em"}}
-           />
+          style={{ bottom: "-7.5em" }}
+        />
         {/* <SearchedDogs /> */}
 
 

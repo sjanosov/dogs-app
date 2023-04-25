@@ -18,7 +18,7 @@ function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, subm
     const SignupSchema = Yup.object().shape({
         gender: Yup.string()
         .required("Select gender"),
-        age: Yup.string()
+        ageInString: Yup.string()
         .required("Select age"),
         breed: Yup.string()
         .required("Select breed"),
@@ -42,8 +42,8 @@ function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, subm
           {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
 
             <Form>
-              <div className="row">
-                <div className="col-4">
+              <div className="row justify-content-space-between">
+                <div className="col gender">
                   <div id="gender-rg">Gender</div>
                   <div role="group" aria-labelledby="gender-rg">
                     <label>
@@ -58,7 +58,7 @@ function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, subm
                     <div>Picked: {values.gender}</div>
                   </div>
                 </div>
-                <div className="col-4">
+                <div className="col age">
                   <div id="age-rg">Age</div>
                   <div role="group" aria-labelledby="age-rg">
                     <label>
@@ -78,7 +78,7 @@ function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, subm
                     <div>Picked: {values.ageInString}</div>
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col breed">
                   <Autocomplete
                     id="breed"
                     options={breeds}
@@ -103,8 +103,8 @@ function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, subm
                   {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
                 </div>
               </div>
-              <div className="row">
-                <div className="col-12 text-right">
+              <div className="row justify-content-flex-end">
+                <div>
                   <Button  type="submit" disabled={submitting}>Sniff it</Button>
                 </div>
               </div>

@@ -35,7 +35,6 @@ body {
     color: $light;
     height: 100%;
     font-size: 14px;
-    overflow-x: hidden;
 }
 
 button {
@@ -56,4 +55,8 @@ h2,
 .h2 {
     margin-bottom: 14px;
     font-weight: 500;
+}
+
+main {
+    overflow-x: hidden;
 }
