@@ -1,12 +1,8 @@
-.css-vqmohf-MuiButtonBase-root-MuiRadio-root {
-    color: $light !important;
-}
-
-.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+.form-input {
     color: $primaryColor !important;
 }
 
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+.submit-button {
     background: $primaryColor !important;
     color: $light !important;
     font-family: $Poppins !important;
@@ -14,7 +10,7 @@
     padding: 13px 20px !important;
 }
 
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+.submit-button:hover {
     background: $primaryHoverColor !important;
 }
 
@@ -28,6 +24,10 @@ form {
     width: 30%;
 }
 
+.col label:hover {
+    cursor: pointer !important;
+}
+
 .error {
     color: $error;
 }
@@ -36,31 +36,29 @@ form {
     width: 200px;
 }
 
-.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root, .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root, .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root, .css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator {
+.form-autocomplete {
     color: $light !important;
-    font: $Poppins !important;
+    font-family: $Poppins !important;
+
+    label {
+        color: $light !important;
+
+       ~ div {
+            color: $light !important;
+            
+        }
+    }
+    button  {
+        color: $light !important;
+    }
+
+    fieldset {
+        border-color: $light !important;
+    }
 }
 
-.css-1glvl0p-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-clearIndicator {
-    color: $light !important;
-}
 
-.css-113ntv0-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator,
-.css-113ntv0-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator:hover {
-    color: $light !important;
-}
-
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border-color: $light !important;
-}
-
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline.Mui-focused {
-    border-color: $primaryColor !important;
-}
-
-
-
-
+//Media queries
 @media only screen and (max-width: 650px) {
     .col.breed {
     width: 100%;

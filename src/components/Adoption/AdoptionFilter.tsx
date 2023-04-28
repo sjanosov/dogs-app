@@ -7,111 +7,111 @@ import { FilteredDogsType } from '../../constants/filteredDogs';
 import { breeds } from '../../constants/breeds';
 
 export interface IAdoptionFilterProps {
-    handleSubmit: (values: FilteredDogsType) => void;
-    autoSelectValue: string | null;
-    setAutoSelectValue: (val: string | null) => void;
-    submitting: boolean;
+  handleSubmit: (values: FilteredDogsType) => void;
+  autoSelectValue: string | null;
+  setAutoSelectValue: (val: string | null) => void;
+  submitting: boolean;
 }
 
-function AdoptionFilter({handleSubmit, autoSelectValue, setAutoSelectValue, submitting}: IAdoptionFilterProps) {
+function AdoptionFilter({ handleSubmit, autoSelectValue, setAutoSelectValue, submitting }: IAdoptionFilterProps) {
 
-    const SignupSchema = Yup.object().shape({
-        gender: Yup.string()
-        .required("Select gender"),
-        ageInString: Yup.string()
-        .required("Select age"),
-        breed: Yup.string()
-        .required("Select breed"),
-    })
-    
+  const SignupSchema = Yup.object().shape({
+    gender: Yup.string()
+      .required("Select gender"),
+    ageInString: Yup.string()
+      .required("Select age"),
+    breed: Yup.string()
+      .required("Select breed"),
+  })
+
 
 
   return (
-        <Formik
-          initialValues={{
-            gender: '',
-            age: 0,
-            ageInString: '',
-            breed: ''
-          }}
-          onSubmit={handleSubmit}
-          validationSchema={SignupSchema}
-          validateOnChange={true}
-        >
+    <Formik
+      initialValues={{
+        gender: '',
+        age: 0,
+        ageInString: '',
+        breed: ''
+      }}
+      onSubmit={handleSubmit}
+      validationSchema={SignupSchema}
+      validateOnChange={true}
+    >
 
-          {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
+      {({ errors, touched, values, isSubmitting, handleChange, setFieldValue }) => (
 
-            <Form>
-              <div className="row justify-content-space-between">
-                <div className="col gender">
-                  <div id="gender-rg">Gender</div>
-                  <div role="group" aria-labelledby="gender-rg">
-                    <label>
-                      <Field type="radio" name="gender" value="Female" as={Radio} />
-                      Female
-                    </label>
-                    <label>
-                      <Field type="radio" name="gender" value="Male" as={Radio} />
-                      Male
-                    </label>
-                    {errors.gender && touched.gender ? <div className="error">{errors.gender}</div> : null}
-                    <div>Picked: {values.gender}</div>
-                  </div>
-                </div>
-                <div className="col age">
-                  <div id="age-rg">Age</div>
-                  <div role="group" aria-labelledby="age-rg">
-                    <label>
-                      <Field type="radio" name="ageInString" value="Puppy" as={Radio} />
-                      0 - 1 year
-                    </label>
-                    <label>
-                      <Field type="radio" name="ageInString" value="Young" as={Radio} helper error={true} />
-                      2 - 6 year
-                    </label>
-                    <label>
-                      <Field type="radio" name="ageInString" value="Old" as={Radio} />
-                      7 year and older
-                    </label>
-                    {errors.ageInString && touched.ageInString ? <div className="error">{errors.ageInString}</div> : null}
+        <Form>
+          <div className="row justify-content-space-between">
+            <div className="col gender">
+              <div id="gender-rg">Gender</div>
+              <div role="group" aria-labelledby="gender-rg">
+                <label>
+                  <Field type="radio" name="gender" value="Female" as={Radio} className="form-input" />
+                  Female
+                </label>
+                <label>
+                  <Field type="radio" name="gender" value="Male" as={Radio} className="form-input" />
+                  Male
+                </label>
+                {errors.gender && touched.gender ? <div className="error">{errors.gender}</div> : null}
+                <div>Picked: {values.gender}</div>
+              </div>
+            </div>
+            <div className="col age">
+              <div id="age-rg">Age</div>
+              <div role="group" aria-labelledby="age-rg">
+                <label>
+                  <Field type="radio" name="ageInString" value="Puppy" as={Radio} className="form-input" />
+                  0 - 1 year
+                </label>
+                <label>
+                  <Field type="radio" name="ageInString" value="Young" as={Radio} className="form-input" helper error={true} />
+                  2 - 6 year
+                </label>
+                <label>
+                  <Field type="radio" name="ageInString" className="form-input" value="Old" as={Radio} />
+                  7 year and older
+                </label>
+                {errors.ageInString && touched.ageInString ? <div className="error">{errors.ageInString}</div> : null}
 
-                    <div>Picked: {values.ageInString}</div>
-                  </div>
-                </div>
-                <div className="col breed">
-                  <Autocomplete
-                    id="breed"
-                    options={breeds}
-                    fullWidth
-                    value={autoSelectValue}
-                    onChange={(e, newVal) => {
-                      setAutoSelectValue(newVal)
-                      setFieldValue("breed", newVal)
+                <div>Picked: {values.ageInString}</div>
+              </div>
+            </div>
+            <div className="col breed">
+              <Autocomplete
+                id="breed"
+                options={breeds}
+                fullWidth
+                value={autoSelectValue}
+                onChange={(e, newVal) => {
+                  setAutoSelectValue(newVal)
+                  setFieldValue("breed", newVal)
 
-                    }}
-                    renderInput={params => (
-                      <TextField
-                        color="primary"
-                        margin="normal"
-                        label="Breed"
-                        name="breed"
-                        {...params}
-                      />
-                    )}
+                }}
+                renderInput={params => (
+                  <TextField
+                    className="form-autocomplete"
+                    margin="normal"
+                    label="Breed"
+                    name="breed"
+                    {...params}
                   />
-                  picked: {values.breed}
-                  {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
-                </div>
-              </div>
-              <div className="row justify-content-flex-end">
-                <div>
-                  <Button  type="submit" disabled={submitting}>Sniff it</Button>
-                </div>
-              </div>
-            </Form>
+                )}
+              />
+              picked: {values.breed}
+              {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
+            </div>
+          </div>
+          <div className="row justify-content-flex-end">
+            <div>
+              <Button type="submit" disabled={submitting} className="submit-button">Sniff it</Button>
+            </div>
+          </div>
+        </Form>
 
-          )}
-        </Formik>
+      )}
+    </Formik>
   )
 }
 

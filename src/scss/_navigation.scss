@@ -96,6 +96,7 @@
 //media queries
 @media only screen and (max-width: 760px) {
     .site-header-container {
+        height: 4vh;
         .mobile-navigation {
             display: flex;
             flex-direction: column;

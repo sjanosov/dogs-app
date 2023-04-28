@@ -23,7 +23,6 @@ function Adoption() {
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [autoSelectValue, setAutoSelectValue] = useState<string | null>("");
   const [showFilteredBreed, setShowFilteredBreed] = useState(false);
-  const [isInitialRender, setIsInitialRender] = useState(true);
 
 
 

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Home from './Home';
 import Dogs from './Dogs';
-import Breeds from './Breeds';
+import Breeds from './Breeds/Breeds';
 import Training from './Training';
 import ErrorPage from './ErrorPage';
 import Adoption from './Adoption';

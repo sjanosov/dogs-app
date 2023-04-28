@@ -12,5 +12,4 @@ export interface IBreed {
     image: IImage;
     temperament: string;
     breed_group: string;
-    handleLightbox: Function;
   }
