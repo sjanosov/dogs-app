@@ -3,6 +3,7 @@
     display: flex;
     border-radius: 4px;
     background: $primaryColor;
+    animation: slide-top 0.4s linear 0s 1 normal both;
 
     .dog-portrait {
         width: 370px;

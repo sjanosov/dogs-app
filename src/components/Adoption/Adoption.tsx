@@ -37,9 +37,9 @@ function Adoption() {
         <AdoptionFilter handleSubmit={handleSubmit} autoSelectValue={autoSelectValue} setAutoSelectValue={setAutoSelectValue} submitting={submitting} />
         {<AdoptionSearchResults selectedBreed={selectedBreed} selectedGender={selectedGender} selectedAgeInString={selectedAgeInString} showFilteredBreed={showFilteredBreed}/>}
        <ToastContainer
-          position="bottom-center"
+          position="top-right"
           autoClose={3000}
-          style={{ bottom: "-7.5em" }}
+          style={{ right: "1em" }}
         />
       </PanelBody>
     </main>

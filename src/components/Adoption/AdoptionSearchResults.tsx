@@ -10,8 +10,8 @@ export interface IAdoptionSearchResults {
   showFilteredBreed: boolean,
 }
 
-function AdoptionSearchResults({selectedBreed, selectedGender, selectedAgeInString, showFilteredBreed}: IAdoptionSearchResults) {
-  
+function AdoptionSearchResults({ selectedBreed, selectedGender, selectedAgeInString, showFilteredBreed }: IAdoptionSearchResults) {
+
   const noDog = () => {
     toast.error("No such a dog for adoption. 🐶");
   };
@@ -21,13 +21,12 @@ function AdoptionSearchResults({selectedBreed, selectedGender, selectedAgeInStri
     const selectedDog = () => {
       return dogsForAdoption.filter(dog => (dog.breed === selectedBreed && dog.gender === selectedGender && dog.ageinString === selectedAgeInString))
     }
-    console.log(selectedDog().length)
 
     if (selectedDog().length) {
       return selectedDog().map(dog => (
         <div className="dog-card" key={dog.id}>
           <div className="dog-portrait">
-            <img src={require(`../../images/${dog.imageUrl}.jpg`)} alt={dog.imageUrl}/>
+            <img src={require(`../../images/${dog.imageUrl}.jpg`)} alt={dog.imageUrl} />
           </div>
           <div className="dog-info">
             <div className="dog-header">
@@ -61,7 +60,12 @@ function AdoptionSearchResults({selectedBreed, selectedGender, selectedAgeInStri
     else return noDog();
   }
   return (
-    <>{showFilteredBreed && getFilteredBreed()}</>
+    <>
+      {showFilteredBreed &&
+        <div className="breed-search-results-container">
+          <>{getFilteredBreed()}</>
+        </div>}
+    </>
   )
 }
 
