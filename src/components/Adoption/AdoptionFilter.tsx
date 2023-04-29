@@ -55,7 +55,6 @@ function AdoptionFilter({ handleSubmit, autoSelectValue, setAutoSelectValue, sub
                   Male
                 </label>
                 {errors.gender && touched.gender ? <div className="error">{errors.gender}</div> : null}
-                <div>Picked: {values.gender}</div>
               </div>
             </div>
             <div className="col age">
@@ -74,8 +73,6 @@ function AdoptionFilter({ handleSubmit, autoSelectValue, setAutoSelectValue, sub
                   7 year and older
                 </label>
                 {errors.ageInString && touched.ageInString ? <div className="error">{errors.ageInString}</div> : null}
-
-                <div>Picked: {values.ageInString}</div>
               </div>
             </div>
             <div className="col breed">
@@ -99,7 +96,6 @@ function AdoptionFilter({ handleSubmit, autoSelectValue, setAutoSelectValue, sub
                   />
                 )}
               />
-              picked: {values.breed}
               {errors.breed && touched.breed ? <div className="error">{errors.breed}</div> : null}
             </div>
           </div>

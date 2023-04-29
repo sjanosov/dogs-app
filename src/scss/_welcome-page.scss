@@ -16,10 +16,10 @@
   animation: slide-top 0.4s linear 0s 1 normal both;
 
   a {
-    background-color: $primaryColor !important;
-    font-family: $Poppins !important;
-    padding: 15px 20px !important;
-    margin-top: 30px !important;
+    background-color: $primaryColor;
+    font-family: $Poppins;
+    padding: 15px 20px;
+    margin-top: 30px;
   }
 }
 
@@ -29,47 +29,18 @@ h2 {
 
 //media queries
 @media only screen and (max-width: 760px) {
+  .welcome-page {
+    padding-top: 130px;
+  }
   .wp-content {
       width: 100%;
       padding: 60px 20px 20px;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+
+    a {
+      padding: 10px 15px;
+    }
   }
 }
-
-
-// .intro {
-//     background: black;
-//     position: fixed;
-//     top: 0;
-//     left: 50px;
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     justify-content: flex-start;
-//     align-items: center;
-//     opacity: .8;
-    
-//   }
-//   .slider {
-//     background: $primaryColor;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     transform: translateY(100%);
-//   }
-  
-//   .intro-text {
-//     color: rgb(233, 233, 233);
-//     font-size: 2rem;
-//   }
-  
-//   .hide {
-//     background: black;
-//     overflow: hidden;
-//   }
-  
-//   .hide span {
-//     transform: translateY(100%);
-//     display: inline-block;
-//   }

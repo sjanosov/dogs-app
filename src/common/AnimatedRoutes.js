@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import Home from './Home';
-import Dogs from './Dogs';
-import Breeds from './Breeds/Breeds';
-import Training from './Training';
-import ErrorPage from './ErrorPage';
-import Adoption from './Adoption';
-import Layout from './Layout';
+import Home from '../components/Home';
+import Dogs from '../components/Dogs/Dogs';
+import Breeds from '../components/Breeds/Breeds';
+import Adoption from '../components/Adoption/Adoption';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, } from 'react-router-dom';
 import { AnimatePresence } from "framer-motion";
+import Layout from './Layout';
+import ErrorPage from './ErrorPage';
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -21,7 +19,6 @@ function AnimatedRoutes() {
                     <Route path="" element={<Home />} />
                     <Route path="/dogs" element={<Dogs />} />
                     <Route path="/breeds" element={<Breeds />} />
-                    <Route path="/training" element={<Training />} />
                     <Route path="/adoption" element={<Adoption />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Route>

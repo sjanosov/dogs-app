@@ -1,5 +1,5 @@
-import PanelBody from './PanelBody';
-import Facts from './Facts';
+import PanelBody from '../../common/PanelBody';
+import Facts from '../Facts';
 
 function Dogs() {
   

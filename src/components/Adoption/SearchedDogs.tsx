@@ -1,5 +1,4 @@
-import React from 'react'
-import { dogsForAdoption } from '../constants/dogsForAdoption'
+import { dogsForAdoption } from '../../constants/dogsForAdoption'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShieldDog } from '@fortawesome/free-solid-svg-icons'
 
