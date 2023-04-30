@@ -19,7 +19,7 @@ function FilteredBreeds({ filteredDogs, queryFunction, openModal }: IFilteredBre
                     return (
                         <button className="card" key={breed.id} onClick={() => openModal(breed)}>
                             <div className="card-top">
-                                <img src={breed.image.url} loading="lazy" />
+                                <img src={breed.image.url} loading="lazy" alt={breed.name}/>
                             </div>
                             <div className="card-bottom">
                                 <h1>{breed.name}</h1>
